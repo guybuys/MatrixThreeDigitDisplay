@@ -1,7 +1,7 @@
 // MatrixThreeDigitDisplay.cpp
 #include "MatrixThreeDigitDisplay.h"
 
-const uint8_t MatrixThreeDigitDisplay::_font[10][8] = {
+const uint8_t MatrixThreeDigitDisplay::font[10][8] = {
   {0b000, 0b111, 0b101, 0b101, 0b101, 0b111, 0b000, 0b000}, // 0
   {0b000, 0b001, 0b001, 0b001, 0b001, 0b001, 0b000, 0b000}, // 1
   {0b000, 0b111, 0b001, 0b111, 0b100, 0b111, 0b000, 0b000}, // 2
@@ -22,7 +22,7 @@ void MatrixThreeDigitDisplay::begin() {
   matrix.begin();
 }
 
-void MatrixThreeDigitDisplay::_clearFrame() {
+void MatrixThreeDigitDisplay::clearFrame() {
   for (int row = 0; row < 8; row++) {
     for (int col = 0; col < 12; col++) {
       frame[row][col] = 0;
@@ -30,11 +30,11 @@ void MatrixThreeDigitDisplay::_clearFrame() {
   }
 }
 
-void MatrixThreeDigitDisplay::_displayFrame() {
+void MatrixThreeDigitDisplay::displayFrame() {
   matrix.renderBitmap(frame, 8, 12);
 }
 
-void MatrixThreeDigitDisplay::_addToFrame(uint8_t digit, int pos) {
+void MatrixThreeDigitDisplay::addToFrame(uint8_t digit, int pos) {
   if (digit > 9) return;
   for (int row = 0; row < 8; row++) {
     uint32_t temp = font[digit][row] << (8 - pos);
